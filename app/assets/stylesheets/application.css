@@ -17,3 +17,7 @@
 li.navbar {
     display: inline;
 }
+
+th {
+    text-align: left;
+}
