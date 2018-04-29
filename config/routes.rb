@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root "static_pages#home"
   get "/signup" => "users#new"
   post '/users' => "users#create"
-  resources :users, only: [:index]
+  resources :users, only: [:show]
   get "/login" => "sessions#new"
   post "/sessions" => "sessions#create"
   get "/logout" => "sessions#logout"

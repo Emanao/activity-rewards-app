@@ -12,8 +12,17 @@
   <body>
     <ul>
         <li class="navbar"><%= link_to "Home", root_path %></li>
-        <li class="navbar"><%= link_to "Sign Up", signup_path%></li>
-        <li class="navbar"><%= link_to "Log In", login_path %></li>
+        <li class="navbar">
+            <%= link_to_unless(is_user_authenticated?, "Signup", signup_path) do 
+                link_to(current_user.name + "'s profile" , current_user)
+             end %>
+        </li>
+        <li class="navbar">
+            <%= link_to_unless(is_user_authenticated?, "Log In", login_path) do
+                link_to("Log Out", logout_path) 
+             end %>
+
+        </li>
     </ul>
     <%= yield %>
   </body>
