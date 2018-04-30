@@ -1,2 +1,8 @@
 <p>Hi <%= @user.name %>, your balance is <%= @user.balance %> points </p>
-<%= link_to 'Add Activity', new_activity_path %>
+<%if @user.admin%>
+    <%= link_to 'Add Activity', new_activity_path %>
+<%else%>
+    <%= link_to 'Add Activity', user_activities_path(@user) %>
+<%end%>
+<p> Your activities </p>
+<%= render '/activities/activity_list', activities: @user.activities%>
