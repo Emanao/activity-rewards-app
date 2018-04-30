@@ -1,9 +1,10 @@
-<h1>Create New Activity</h1>
-
-<%= form_for @activity do |f| %>
-<table>
-    <tr><th><%= f.label :name %></th> <td><%= f.text_field :name %></td></tr>
-    <tr><th><%= f.label :points %></th> <td><%= f.password_field :points%></td></tr>
-    <tr><td></td><td><%= f.submit %></td></tr>
-</table>
-<%end%>
+<h2>Create New Activity</h2>
+<p><%= flash[:alert]  if flash[:alert] %></p>
+<%= render "form", activity: @activity %>
+<h2>List of all Activities</h2>
+ 
+<ul>
+    <% @activities.each do |activity| %>
+        <li> <%= link_to activity.name + " " + activity.points.to_s, edit_activity_path(activity) %> </li>
+    <% end %>
+</ul>
