@@ -9,4 +9,8 @@ class User < ApplicationRecord
             user.password = SecureRandom.hex
         end
     end
+
+    def balance
+        "50"
+    end
 end
