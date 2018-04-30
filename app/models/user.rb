@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    has_many :achievements
+    has_many :activities, through: :achievements
     has_secure_password
     
     def self.find_or_create_onmiauth(auth_hash)
