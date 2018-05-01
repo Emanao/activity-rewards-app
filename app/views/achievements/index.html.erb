@@ -1,0 +1,8 @@
+<h1>What did you achieve today?</h1>
+<table>
+<% @achievements.each do |achievement| %>
+    <tr><td><%= button_to "Achieved!", user_achievement_path(achievement.user, achievement.activity), method: "patch" %></td>
+    <td><%= achievement.activity.name %></td><td><%= pluralize(achievement.frequency, "time") %></td>
+       </tr>
+<% end %>
+</table>
