@@ -1,0 +1,6 @@
+<h1>Add Activitites</h1>
+<table>
+    <%@activities.each do |activity|%>
+        <tr><td><%= button_to "Add Activity", user_achievements_path(@user), params: {"achievement[user_id]" => @user.id, "achievement[activity_id]" => activity.id} %></td><td><%= "#{activity.name}: #{activity.points} points" %></td></tr>
+    <%end%>
+</table>

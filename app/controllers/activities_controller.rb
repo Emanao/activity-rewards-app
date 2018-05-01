@@ -1,5 +1,18 @@
 class ActivitiesController < ApplicationController
-    before_action :set_activity, only: [:edit, :update]
+    before_action :set_activity, only: [:show, :edit, :update]
+    def index
+        all_activities =  Activity.all
+
+        if(params[:user_id])          
+            @user = User.find_by(id: params[:user_id])
+            @activities = all_activities - @user.activities
+        else
+            @activities =  Activity.all
+        end
+    end
+    def show
+    end
+
     def new
        @activity = Activity.new
        @activities = Activity.all

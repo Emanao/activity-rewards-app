@@ -2,7 +2,7 @@
 <% if @user.admin %>
     <%= link_to 'Add Activity', new_activity_path %>
 <% else %>
-    <%= link_to 'Add Points', user_achievements_path(@user.id) %>
+    <%= link_to 'Add Points', user_achievements_path(@user.id) %> or <%= link_to "Add Activities", user_activities_path(@user) %>
 <% end %>
 <p> Your activities </p>
 <%= render '/activities/activity_list', activities: @user.activities%>
