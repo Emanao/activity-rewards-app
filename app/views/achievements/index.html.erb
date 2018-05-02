@@ -1,8 +1,11 @@
-<h1>What did you achieve today?</h1>
+<h1>Start winning points by clicking the "Achieved!" button</h1>
 <table>
+    <tr><th>Points</th><th>Goals</th><th>Frequency</th>
 <% @achievements.each do |achievement| %>
-    <tr><td><%= button_to "Achieved!", user_achievement_path(achievement.user, achievement.activity), method: "patch" %></td>
+    <tr>
+    <td> <%=achievement.frequency*achievement.activity.points%> </td>
     <td><%= achievement.activity.name %></td><td><%= pluralize(achievement.frequency, "time") %></td>
+    <td><%= button_to "Achieved!", user_achievement_path(achievement.user, achievement), method: "patch" %></td>
        </tr>
 <% end %>
 </table>

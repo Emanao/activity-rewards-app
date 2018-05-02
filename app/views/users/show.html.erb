@@ -1,8 +1,13 @@
-<p>Hi <%= @user.name %>, your balance is <%= @user.balance %> points </p>
-<% if @user.admin %>
-    <%= link_to 'Add Activity', new_activity_path %>
-<% else %>
-    <%= link_to 'Add Points', user_achievements_path(@user.id) %> or <%= link_to "Add Activities", user_activities_path(@user) %>
-<% end %>
-<p> Your activities </p>
-<%= render '/activities/activity_list', activities: @user.activities%>
+<h3>Hi <%= @user.name %><%= ", you have a balance of #{@user.points} points." unless @user.admin %> </h3>
+<p>What do you want to do next?</p>
+<ul>
+    <% if @user.admin %>
+        <li><%= link_to 'Add Activity', new_activity_path %></li>
+        <li><%= link_to 'Add Reward', new_activity_path %></li>
+    <% else %>
+        <li><%= link_to 'Add Points', user_achievements_path(@user.id) %></li>
+        <li> <%= link_to "Add Goals", user_activities_path(@user) %></li>
+        <li><%= link_to "Redeem Your Points", root_path %></li>
+    <% end %>
+</ul>
+

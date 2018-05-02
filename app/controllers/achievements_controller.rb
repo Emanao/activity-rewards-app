@@ -8,16 +8,18 @@ class AchievementsController < ApplicationController
         end
     end
     def create
-        Achievement.create(achievement_params)
+        achievement = Achievement.create(achievement_params)
         redirect_to user_path(current_user)
         
     end
     def update
-        raise params.inspect
+        achievement = Achievement.find_by(id: params[:id])
+        achievement.update_user_account
+        redirect_to user_achievements_path(achievement.user)
     end
 
     private
     def achievement_params
-        params.require(:achievement).permit(:user_id, :activity_id)
+        params.require(:achievement).permit(:user_id, :activity_id, :frequency)
     end
 end

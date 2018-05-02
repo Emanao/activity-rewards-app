@@ -2,9 +2,5 @@
 <p><%= flash[:alert]  if flash[:alert] %></p>
 <%= render "form", activity: @activity %>
 <h2>List of all Activities</h2>
+<%= render "activity_list", activities: @activities%>
  
-<ul>
-    <% @activities.each do |activity| %>
-        <li> <%= link_to activity.name + " " + activity.points.to_s, edit_activity_path(activity) %> </li>
-    <% end %>
-</ul>

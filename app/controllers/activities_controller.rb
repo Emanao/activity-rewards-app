@@ -7,7 +7,7 @@ class ActivitiesController < ApplicationController
             @user = User.find_by(id: params[:user_id])
             @activities = all_activities - @user.activities
         else
-            @activities =  Activity.all
+            @activities =  all_activities 
         end
     end
     def show
@@ -19,6 +19,7 @@ class ActivitiesController < ApplicationController
     end
     def create
         @activity = Activity.new(activity_params)
+        @activities = Activity.all
         if @activity.save
             render new_activity_path
         else

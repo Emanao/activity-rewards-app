@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2018_04_30_172332) do
   create_table "achievements", force: :cascade do |t|
     t.integer "user_id"
     t.integer "activity_id"
-    t.integer "frequency"
+    t.integer "frequency", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2018_04_30_172332) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
+    t.integer "points", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
