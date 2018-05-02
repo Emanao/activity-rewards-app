@@ -13,7 +13,7 @@
     <ul>
         <li class="navbar"><%= link_to "Home", root_path %></li>
         <li class="navbar">
-            <%= link_to_unless(logged_in?, "Signup", signup_path) do 
+            <%= link_to_unless(logged_in?, "Sign Up", signup_path) do 
                 link_to(current_user.name + "'s profile" , current_user)
              end %>
         </li>
