@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2018_04_30_172332) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
-    t.integer "points"
+    t.integer "points", default: 5
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,6 +1,9 @@
 class User < ApplicationRecord
     has_many :achievements
     has_many :activities, through: :achievements
+    validates :name, presence: true
+    validates :name, uniqueness: true
+    
     has_secure_password
     
     def self.find_or_create_onmiauth(auth_hash)
@@ -10,7 +13,8 @@ class User < ApplicationRecord
         end
     end
 
-    def balance
-        "50"
+    def activities_attributes=(activities_attributes)
+        activity = Activity.find_or_create_by(name: activities_attributes.flatten[1][:name])
+        self.achievements.build(activity: activity) unless self.achievements.include?(activity)
     end
 end

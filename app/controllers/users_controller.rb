@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :set_user, only: [:show, :update]
     def new
         @user = User.new
     end
@@ -12,12 +13,26 @@ class UsersController < ApplicationController
         end
     end
     def show
-        @user = User.find_by(id: params[:id])
+
+    end
+    def update
+
+        @user.update(user_params)
+        redirect_to user_path(@user)
     end
 
     private
     def user_params
-        params.require(:user).permit(:name, :password, :password_confirmation, :admin, :points)
+        params.require(:user).permit(:name, 
+                                     :password, 
+                                     :password_confirmation, 
+                                     :admin, 
+                                     :points, 
+                                     :activity_ids => [], 
+                                     :activities_attributes=> :name)
+    end
+    def set_user
+        @user = User.find_by(id: params[:id])
     end
 
 end
