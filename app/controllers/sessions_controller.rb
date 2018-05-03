@@ -9,8 +9,8 @@ class SessionsController < ApplicationController
         login(@user)
         redirect_to root_path
     else
-        @user = User.find_by(name: params[:user][:name])
-        if (!!@user && @user.authenticate(params[:user][:password]))
+        @user = User.find_by(name: params[:name])
+        if (!!@user && @user.authenticate(params[:password]))
             login(@user)
             redirect_to user_path(@user)
         else
