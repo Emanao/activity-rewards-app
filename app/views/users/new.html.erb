@@ -1,5 +1,19 @@
 <h1>Signup</h1>
 <%= form_for @user do |f| %>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h4>
+      <%= pluralize(@user.errors.count, "error") %>
+      prohibited this article from being saved:
+    </h4>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= f.check_box :admin %><%= f.label :admin, "Check box if you are the Admin" %>
 <table>
     <tr><th><%= f.label :name %></th> <td><%= f.text_field :name %></td></tr>

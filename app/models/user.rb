@@ -1,8 +1,12 @@
 class User < ApplicationRecord
     has_many :achievements
     has_many :activities, through: :achievements
-    validates :name, presence: true
+
+    validates :name, :password, presence: true, on: :create
     validates :name, uniqueness: true
+    
+    #accepts_nested_attributes_for :activities
+
     
     has_secure_password
     
@@ -14,7 +18,10 @@ class User < ApplicationRecord
     end
 
     def activities_attributes=(activities_attributes)
-        activity = Activity.find_or_create_by(name: activities_attributes.flatten[1][:name])
-        self.achievements.build(activity: activity) unless self.achievements.include?(activity)
+        activities_attributes_name =  activities_attributes.flatten[1][:name].strip
+        if(!activities_attributes_name.blank?)
+            activity = Activity.find_or_create_by(name: activities_attributes_name)
+            self.achievements.create(activity: activity) unless self.achievements.include?(activity)
+        end
     end
 end
