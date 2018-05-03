@@ -1,10 +1,12 @@
 class ActivitiesController < ApplicationController
+    before_action :login_required
     before_action :set_activity, only: [:show, :edit, :update]
     def index
         all_activities =  Activity.all
 
         if(params[:user_id])          
             @user = User.find_by(id: params[:user_id])
+            authentication_required(@user)
             @activities = all_activities - @user.activities
         else
             @activities =  all_activities 

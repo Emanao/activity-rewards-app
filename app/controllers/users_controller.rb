@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
+    before_action :login_required, only: [:show, :update]
     before_action :set_user, only: [:show, :update]
+    #signup
     def new
         @user = User.new
     end
+    #signup
     def create
         @user = User.new(user_params)
         if @user.save
@@ -12,11 +15,13 @@ class UsersController < ApplicationController
             render :new
         end
     end
+    #show users profile
     def show
-
+        redirect_to logout_path if current_user != @user
     end
-    def update
 
+    #update users profile
+    def update
         @user.update(user_params)
         redirect_to user_path(@user)
     end
