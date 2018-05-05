@@ -1,2 +1,9 @@
-<h2>Edit Activity</h2>
-<%= render "form", activity: @activity %>
+<ul>
+    <h2>Edit Activity</h2>
+    <%= render "form", activity: @activity %>
+    <p style="color:red;">Activiy changes will impact following users: </p>
+    <table>
+        <tr><th>Name</th><th>Points</th></tr>
+        <%= render @activity.users || "There are no users linked to this activity." %>
+    </table>
+</ul>
