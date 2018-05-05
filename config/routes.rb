@@ -14,9 +14,10 @@ Rails.application.routes.draw do
 
   #nested resources
   resources :users, only: [:show] do
-    resources :activities, only: [:index, :show, :update]
-    resources :achievements, only: [:index, :create, :update]
+    resources :activities, only: [:index, :update]
+    resources :achievements, only: [:index, :update]
   end 
-  resources :users, only: [:update]
-  resources :activities, only: [:show, :new, :create, :edit, :update]
+  #resources :admins, only: [:index]
+  resources :activities, only: [:index]
+  resources :users, only: [ :index, :update]
 end

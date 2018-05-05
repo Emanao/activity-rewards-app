@@ -1,0 +1,13 @@
+<ul><h2>Users Overview</h2>
+    <p>To see their existing goals click on the link</p>
+    <table>
+        <tr><th>Name</th><th>Points</th>
+        <% @users.each do |user| %>
+            <tr>
+            <td><%= link_to user.name, user_activities_path(user) %></td>
+            <td><%= user.points %></td>
+            </tr>
+        <%end%>
+    </table>
+    <br>
+</ul>

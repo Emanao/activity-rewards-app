@@ -1,24 +1,8 @@
-<ul>
+<ul>    
     <% if @user.admin %>
-        <p>What do you want to do next?</p>
-        <li><%= link_to 'Add Activity', new_activity_path %></li>
-        <li><%= link_to 'Add Reward', new_activity_path %></li>
-    <% else %>
-        <h3>Hi <%= @user.name %><%= ", you have a balance of #{@user.points} points." unless @user.admin %> </h3>
-
-        <h3>What are your goals for today? </h3>
-        <%= form_for @user do |f| %>
-            <%= f.collection_check_boxes :activity_ids, Activity.all, :id, :name %><br/>
-            <h3>Add more goals</h3>
-            <%=f.fields_for :activities, Activity.new do |activity_builder|%>
-                <%= activity_builder.text_field :name %>
-            <% end %><br/>
-            <!--input type ="text" name="user[activities_attributes][name]"--></br>
-            <%= f.submit "Save Goals"%><br/><br/>
-        <% end %>
-       <%= link_to "Add Points to Your Goals", user_achievements_path(@user)%>
-
-
+        <h3>Hi <%= @user.name %>, What do you want to do next? </h3>
+        <li><%= link_to 'Manage Activities For Users', users_path %></li>
+        <li><%= link_to 'Manage Activities', activities_path %> </li>
+    <% else%>
     <% end %>
 </ul>
-

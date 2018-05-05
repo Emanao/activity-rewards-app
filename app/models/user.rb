@@ -17,11 +17,13 @@ class User < ApplicationRecord
         end
     end
 
+    # Form nested resource: REQ 13 
     def activities_attributes=(activities_attributes)
         activities_attributes_name =  activities_attributes.flatten[1][:name].strip
-        if(!activities_attributes_name.blank?)
-            activity = Activity.find_or_create_by(name: activities_attributes_name)
-            self.achievements.create(activity: activity) unless self.achievements.include?(activity)
+        activities_attributes_points =  activities_attributes.flatten[1][:points].strip
+        if (!activities_attributes_name.blank? && !activities_attributes_points.blank?)
+            activity = Activity.find_or_create_by(name: activities_attributes_name, points: activities_attributes_points)
+            self.achievements.create(activity: activity) unless self.activities.include?(activity)
         end
     end
 end

@@ -14,10 +14,12 @@ class SessionsController < ApplicationController
             login(@user)
             redirect_to user_path(@user)
         else
+            flash.now[:alert] = "Unknown user. Please signup or try again"
             render :new
         end
     end
   end
+  
   def logout
     session.delete :user_id
     @current_user = nil

@@ -27,6 +27,7 @@ div.field_with_errors input[type="password"] {
     border: 1px solid red
 }
 
-#error_explanation {
+#error_explanation,
+p.flash_error {
     color: red;
 }

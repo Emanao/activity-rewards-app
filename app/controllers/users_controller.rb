@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
     before_action :login_required, only: [:show, :update]
     before_action :set_user, only: [:show, :update]
+    def index
+        @users = User.all
+    end
+
     #signup
     def new
         @user = User.new
@@ -17,13 +21,14 @@ class UsersController < ApplicationController
     end
     #show users profile
     def show
-        redirect_to logout_path if current_user != @user
+        authentication_required(@user)
+        redirect_to user_achievements_path(@user) if(!@user.admin)
     end
 
     #update users profile
     def update
         @user.update(user_params)
-        redirect_to user_path(@user)
+        redirect_to user_activities_path(@user)
     end
 
     private
@@ -34,7 +39,7 @@ class UsersController < ApplicationController
                                      :admin, 
                                      :points, 
                                      :activity_ids => [], 
-                                     :activities_attributes=> :name)
+                                     :activities_attributes=> [:name, :points])
     end
     def set_user
         @user = User.find_by(id: params[:id])

@@ -1,9 +1,10 @@
 <h1>Login</h1>
 <%= form_tag sessions_path do %>
-<table>
-    <tr><th><%= label_tag :name %></th> <td><%= text_field_tag :name %></td></tr>
-    <tr><th><%= label_tag :password %></th> <td><%= password_field_tag :password %></td></tr>
-    <tr><td></td><td><%= submit_tag "Login" %></td></tr>
-    <tr><td><%= link_to('Log in with GitHub Accout', '/auth/github') %></td></tr>
+    <p class="flash_error"><%= flash[:alert]  if flash[:alert] %></p>
+    <table>
+        <tr><th><%= label_tag :name %></th> <td><%= text_field_tag :name %></td></tr>
+        <tr><th><%= label_tag :password %></th> <td><%= password_field_tag :password %></td></tr>
+        <tr><td></td><td><%= submit_tag "Login" %></td></tr>
+        <tr><td><%= link_to('Log in with GitHub Accout', '/auth/github') %></td></tr>
 </table>
 <% end %>

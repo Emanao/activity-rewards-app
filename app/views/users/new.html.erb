@@ -2,10 +2,10 @@
 <%= form_for @user do |f| %>
 <% if @user.errors.any? %>
   <div id="error_explanation">
-    <h4>
+    <p>
       <%= pluralize(@user.errors.count, "error") %>
       prohibited this article from being saved:
-    </h4>
+    </p>
     <ul>
     <% @user.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>

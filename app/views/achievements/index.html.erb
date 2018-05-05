@@ -1,13 +1,14 @@
-<h3>Start adding points by clicking the "Achieved!" button. Your balance is <%= @user.points %>. </h3>
+    <h3>Hi <%= @user.name %><%= ", you have a balance of #{@user.points} points." %> </h3>
 
-<table>
-    <tr><th>Points</th><th>Goals</th><th>Frequency</th>
-    <% @achievements.each do |achievement| %>
-        <tr>
-            <td><%= achievement.activity.points%> </td>
-            <td><%= achievement.activity.name %></td><td><%= pluralize(achievement.frequency, "time") %></td>
-            <td><%= button_to "Achieved!", user_achievement_path(achievement.user, achievement), method: "patch" %></td>
-        </tr>
-    <% end %>
-</table>
-<%= link_to 'Back', user_path(current_user) %>
+    <p>To win points click on the button of the goal you achieved</p>
+
+    <table>
+        <tr><th>Points</th><th>Goals</th><th>Frequency</th>
+        <% @achievements.each do |achievement| %>
+            <tr>
+                <td><%= achievement.activity.points%> </td>
+                <td><%= achievement.activity.name %></td><td><%= pluralize(achievement.frequency, "time") %></td>
+                <td><%= button_to "Achieved!", user_achievement_path(achievement.user, achievement), method: "patch" %></td>
+            </tr>
+        <% end %>
+    </table>

@@ -1,12 +1,16 @@
-<h1>Add Goals</h1>
-<table>
-    <tr><th>Points</th><th>Goals</th>
-    <%@activities.each do |activity|%>
-        <tr>
-        <td><%= "#{activity.points}" %></td>
-        <td><%= "#{activity.name}" %></td>
-        <td><%= button_to "Add Goal", user_achievements_path(@user), params: {"achievement[user_id]" => @user.id, "achievement[activity_id]" => activity.id} %></td> 
-        </tr>
-    <%end%>
-</table>
-<%= link_to 'Back', user_path(current_user) %>
+    <h3>Choose goals for <%= @user.name %></h3>
+        <%= form_for @user do |f| %>
+            <%= f.collection_check_boxes :activity_ids, Activity.all, :id, :name %><br/>
+            <h3>And/or add more</h3>
+            <%=f.fields_for :activities, Activity.new do |activity_builder|%>
+                <%= activity_builder.label :name %>
+                <%= activity_builder.text_field :name %><br/>
+                <%= activity_builder.label :points %>
+                <%= activity_builder.text_field :points %><br/>                
+
+            <% end %><br/>
+            <!--input type ="text" name="user[activities_attributes][name]"--></br>
+            <%= f.submit "Save Goals"%><br/><br/>
+        <% end %>
+
+
