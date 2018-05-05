@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     before_action :login_required, only: [:show, :update]
     before_action :set_user, only: [:show, :update]
+
     def index
         @users = User.all
     end
@@ -14,21 +15,26 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             login(@user)
-            redirect_to user_path(@user)
+            redirect_to current_user.admin ? current_user : user_achievements_path(current_user)
         else
             render :new
         end
     end
+    
     #show users profile
     def show
         authentication_required(@user)
-        redirect_to user_achievements_path(@user) if(!@user.admin)
+    end
+
+    def edit
+        @user = User.find_by(id: params[:id])
+        authentication_required(@user)
     end
 
     #update users profile
     def update
         @user.update(user_params)
-        redirect_to user_activities_path(@user)
+        redirect_to edit_user_path(@user)
     end
 
     private
