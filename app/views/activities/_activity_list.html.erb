@@ -1,6 +1,0 @@
-<table>
-    <tr><th>Points</th><th>Name</th> </tr>
-    <% activities.each do |activity| %>
-        <tr><td><%= activity.points.to_s %></td><td><%= activity.name %> </td><td><%= link_to 'Edit Activities', edit_activity_path(activity) if current_user.admin%></td></tr>
-    <% end %>
-</table>
