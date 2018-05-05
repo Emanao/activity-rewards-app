@@ -2,7 +2,6 @@
     <% if @user.admin %>
         <h3>Hi <%= @user.name %>, What do you want to do next? </h3>
         <li><%= link_to 'Manage Activities For Users', users_path %></li>
-        <li><%= link_to 'Manage Activities', activities_path %> </li>
-    <% else%>
+        <li><%= link_to 'Manage Existing Activities', activities_path %> </li>
     <% end %>
 </ul>
