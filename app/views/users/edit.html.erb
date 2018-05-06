@@ -1,3 +1,4 @@
+<ul>
     <h3>Choose goals for <%= @user.name %></h3>
         <%= form_for @user do |f| %>
             <%= f.collection_check_boxes :activity_ids, Activity.all, :id, :name %><br/>
@@ -11,3 +12,4 @@
             <!--input type ="text" name="user[activities_attributes][name]"--></br>
             <%= f.submit "Save Goals"%><br/><br/>
         <% end %>
+</ul>
