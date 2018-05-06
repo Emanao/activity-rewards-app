@@ -4,12 +4,13 @@ class User < ApplicationRecord
 
     validates :name, :password, presence: true, on: :create
     validates :name, uniqueness: true
-    
-    #accepts_nested_attributes_for :activities
 
-    
     has_secure_password
-    
+
+    scope :points_desc_order, -> { order("points DESC") }
+
+    #accepts_nested_attributes_for :activities
+        
     def self.find_or_create_onmiauth(auth_hash)
         oauth_name = auth_hash[:info][:name]
         self.where(name: oauth_name).first_or_create do |user|

@@ -19,9 +19,13 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :activities, only: [:index, :update]
     resources :achievements, only: [:index, :update]
+    get "search", to: "users#search"
   end 
 
-  #Admin resources
-  resources :activities, only: [:index, :edit, :update]
   resources :users, only: [ :index, :edit, :update]
+
+  #admin resources
+  resources :activities, only: [:index, :edit, :update]
+  
+
 end

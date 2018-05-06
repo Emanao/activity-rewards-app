@@ -3,5 +3,12 @@
         <h3>Hi <%= @user.name %>, What do you want to do next? </h3>
         <li><%= link_to 'Manage Activities For Users', users_path %></li>
         <li><%= link_to 'Manage Existing Activities', activities_path %> </li>
+         <h3>User Stats:</h3>
+        <table>
+        <tr><th>Name</th><th>Points</th><th>Goals</th></tr>
+            <% @users.each do |user| %>
+            <tr><td><%= user.name %></td><td><%= user.points %></td><td><%= user.achievements.count %></td></tr>
+            <% end %>
+        </tabe>
     <% end %>
 </ul>

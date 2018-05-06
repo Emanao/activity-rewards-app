@@ -23,7 +23,9 @@ class UsersController < ApplicationController
     
     #show users profile
     def show
-        authentication_required(@user)
+        authentication_required(@user)  
+        #REQ7: Class level AR scope method 
+        @users = User.points_desc_order
     end
 
     def edit
