@@ -7,7 +7,8 @@ class User < ApplicationRecord
 
     has_secure_password
 
-    scope :points_desc_order, -> { order("points DESC") }
+    scope :by_desc_points, -> { order("points DESC") }
+    scope :search_name, ->(name) { where("name LIKE ?", "%#{name}%") }
 
     #accepts_nested_attributes_for :activities
         

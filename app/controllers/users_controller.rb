@@ -25,7 +25,11 @@ class UsersController < ApplicationController
     def show
         authentication_required(@user)  
         #REQ7: Class level AR scope method 
-        @users = User.points_desc_order
+        if( params[:name_q].present? )
+            @users = User.search_name(params[:name_q])
+        else
+            @users = User.by_desc_points
+        end
     end
 
     def edit

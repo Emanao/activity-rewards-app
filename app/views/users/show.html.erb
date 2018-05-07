@@ -1,14 +1,21 @@
 <ul>    
     <% if @user.admin %>
         <h3>Hi <%= @user.name %>, What do you want to do next? </h3>
-        <li><%= link_to 'Manage Activities For Users', users_path %></li>
-        <li><%= link_to 'Manage Existing Activities', activities_path %> </li>
-         <h3>User Stats:</h3>
+        <li><%= link_to 'Manage Goals For Users', users_path %></li>
+        <li><%= link_to 'Manage Existing Goals', activities_path %> </li>
+        <br/>
+         <h3>Search:</h3>
+        <%= form_tag(user_path(@user), method: :get) do %>
+            User Name <%= text_field_tag :name_q %>
+            <%= submit_tag 'Search', name: nil %>
+        <% end %>
+        <br/><br/>
         <table>
+        <tr>All users sorted by total points</tr>
         <tr><th>Name</th><th>Points</th><th>Goals</th></tr>
             <% @users.each do |user| %>
             <tr><td><%= user.name %></td><td><%= user.points %></td><td><%= user.achievements.count %></td></tr>
             <% end %>
-        </tabe>
+        </table>
     <% end %>
 </ul>
