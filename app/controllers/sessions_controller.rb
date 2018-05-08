@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
             #redirect_to user_path(@user)
             redirect_to current_user.admin ? current_user : user_achievements_path(current_user)
         else
-            flash.now[:alert] = "Unknown user. Please signup or try again"
+            flash.now[:alert] = "Invalid user or password. Please signup or try again"
             render :new
         end
     end
