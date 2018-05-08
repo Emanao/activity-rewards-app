@@ -4,6 +4,6 @@
     <p style="color:red;">Goal changes will impact following users: </p>
     <table>
         <tr><th>Name</th><th>Points</th></tr>
-        <%= render @activity.users || "There are no users linked to this goal." %>
+        <%= render(@activity.users) || "There are no users linked to this goal." %>
     </table>
 </ul>
