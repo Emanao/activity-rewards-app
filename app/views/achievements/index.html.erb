@@ -1,10 +1,10 @@
  <ul>
     <h3>Hi <%= @user.name %><%= ", you have a balance of #{@user.points} points." %> </h3>
 
-    <p>To win points click on the button of the goal you achieved</p>
     <% if @achievements.size ==0 %>
         <p style="color:red;"><%= "Contact your Admin to add goals and start winning points" %></p>
     <% else %>
+        <p>To win points click on the button of the goal you achieved</p>
         <table>
             <tr><th>Points</th><th>Goals</th><th>Frequency</th>
             <% @achievements.each do |achievement| %>

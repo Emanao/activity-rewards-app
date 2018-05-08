@@ -35,6 +35,7 @@ class UsersController < ApplicationController
     def edit
         @user = User.find_by(id: params[:id])
         authentication_required(@user)
+        @activities = Activity.all
     end
 
     #update users profile

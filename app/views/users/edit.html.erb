@@ -1,7 +1,11 @@
 <ul>
     <h3>Choose goals for <%= @user.name %></h3>
         <%= form_for @user do |f| %>
-            <%= f.collection_check_boxes :activity_ids, Activity.all, :id, :name %><br/>
+            <% if @activities.size > 0%>
+                <%= f.collection_check_boxes :activity_ids, @activities, :id, :name %><br/>
+            <% else %>
+                <%= "There are no goals available." %>
+            <% end %>
             <h3>And/or add more</h3>
             <%=f.fields_for :activities, Activity.new do |activity_builder|%>
                 <%= activity_builder.label :name %>
