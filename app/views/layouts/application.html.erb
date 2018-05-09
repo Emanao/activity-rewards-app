@@ -15,7 +15,7 @@
         <li class="navbar">
             <%= link_to_unless(logged_in?, "Sign Up", signup_path) do 
                 link_to(current_user.name + "'s profile" , 
-                current_user.admin ? current_user : user_achievements_path(current_user))
+                current_user_profile_page)
              end %>
         </li>
         <li class="navbar">
