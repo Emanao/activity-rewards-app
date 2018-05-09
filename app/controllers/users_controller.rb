@@ -15,7 +15,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             login(@user)
-            redirect_to current_user.admin ? current_user : user_achievements_path(current_user)
+            redirect_to current_user_profile_page
         else
             render :new
         end

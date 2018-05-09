@@ -12,8 +12,7 @@ class SessionsController < ApplicationController
         @user = User.find_by(name: params[:name])
         if (!!@user && @user.authenticate(params[:password]))
             login(@user)
-            #redirect_to user_path(@user)
-            redirect_to current_user.admin ? current_user : user_achievements_path(current_user)
+            redirect_to current_user_profile_page
         else
             flash.now[:alert] = "Invalid user or password. Please signup or try again"
             render :new
